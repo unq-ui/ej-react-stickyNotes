@@ -1,26 +1,71 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import stickyNotes from './stickyNotes.json';
+import StickyNote from './StickyNote';
+import Modal from './Modal';
+
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      notes: stickyNotes,
+      showModal: false,
+      selectedNote: null,
+    };
+  }
+
+  removeNote = id => {
+    const newNotes = this.state.notes.filter(note => note.id !== id);
+    this.setState({ notes: newNotes });
+  }
+
+  addNote = note => {
+    let newNotes;
+
+    if(note.id) {
+      newNotes = this.state.notes.map(n => {
+        if (n.id === note.id) {
+          return { ...note }
+        }
+        return n;
+      });
+    } else {
+      newNotes = [...this.state.notes, { ...note, id: this.state.notes.length + 1 }];
+    }
+    this.setState({ notes: newNotes });
+  }
+
+  openModal = () => {
+    this.setState({ showModal: true });    
+  }
+
+  closeModal = () => {
+    this.setState({ showModal: false });    
+  }
+
+  editNote = note => {
+    this.setState({
+      selectedNote: note,
+      showModal: true,
+    })
+  }
+
+  render() {
+    const { notes, showModal, selectedNote } = this.state; 
+    return (
+      <>
+        <div className="container">
+          {notes.map(note => <StickyNote key={note.id} note={note} removeNote={this.removeNote} editNote={() => this.editNote(note)} />)}
+        </div>
+        <div className="btn-add-note">
+          <img src="./img/add.svg" alt="add new note" className="icon--add" onClick={this.openModal} />
+        </div>
+        {showModal && <Modal closeModal={this.closeModal} addNote={this.addNote} selectedNote={selectedNote} />}
+      </>
+    );
+  }
 }
 
 export default App;

@@ -1,38 +1,184 @@
-.App {
+.container {
+  padding: 5rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 30rem);
+  grid-gap: 6rem;
+  justify-content: center;
+}
+
+.stickyNote {
+  background-color: var(--color-yellow);
+  padding: 1.5rem;
+  height: 25rem;
+  transition: all .3s;
+  box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.stickyNote--orange {
+  background-color: var(--color-orange);
+}
+
+.stickyNote--blue {
+  background-color: var(--color-blue);
+}
+
+.stickyNote--yellow {
+  background-color: var(--color-yellow);
+}
+
+.stickyNote--pink {
+  background-color: var(--color-pink);
+}
+
+.stickyNote--green {
+  background-color: var(--color-green);
+}
+
+.stickyNote:hover {
+  transform: scale(1.2);
+  box-shadow: 10px 15px 15px 0px rgba(0, 0, 0, 0.5);
+}
+
+.text {
+  line-height: 2.5rem;
+  font-size: 1.6rem;
+  text-align: justify;
+  overflow-wrap: break-word;
+}
+
+textarea {
+  resize: none;
+}
+
+.btn-add-note {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  background-color: #fff;
+  padding: 3rem;
+  border-radius: 50%;
+  box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  grid-column-gap: 10px;
+  justify-content: end;
+  visibility: hidden;
+}
+
+.stickyNote:hover .actions {
+  visibility: visible;
+}
+
+.icon {
+  cursor: pointer;
+  padding: .3rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: opacity(.6);
+  transition: all .2s;
+}
+
+.icon--add {
+  cursor: pointer;
+  padding: .3rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: opacity(.6);
+  transition: all .2s;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.icon:hover {
+  filter: none
+}
+
+.background {
+  position: fixed;
+  background-color: rgba(0, 0, 0, .7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  width: 20vw;
+}
+
+.modal__header {
+  display: grid;
+  justify-content: end;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.modal__content {
+  display: grid;
+  padding: 2rem;
+  grid-gap: 2rem;
+}
+
+.colors {
+    display: grid;
+    grid-template-columns: repeat(5, max-content);
+    grid-gap: 1rem;
+    justify-content: end;
+}
+
+.color {
+  padding: 1.5rem;
+  border-radius: 50%;
+  border-width: 2px;
+  border-style: solid;
+  box-sizing: border-box;
+  border-color: transparent;
+}
+
+.color--orange {
+  background-color: var(--color-orange);
+}
+
+.color--blue {
+  background-color: var(--color-blue);
+}
+
+.color--yellow {
+  background-color: var(--color-yellow);
+}
+
+.color--pink {
+  background-color: var(--color-pink);
+}
+
+.color--green {
+  background-color: var(--color-green);
+}
+
+.color--active {
+  border-color: blue;
+}
+
+.btn-modal {
+  cursor: pointer;
+  background-color: var(--color-background);
+  padding: 1.5rem;
+  box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  transition: all .2s;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-modal:hover {
+  transform: translateY(-.25rem);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-modal:active {
+  transform: translateY(-.05rem);
 }
