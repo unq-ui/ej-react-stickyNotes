@@ -32,9 +32,9 @@ class App extends React.Component {
         return n;
       });
     } else {
-      newNotes = [...this.state.notes, { ...note, id: this.state.notes.length + 1 }];
+      newNotes = [{ ...note, id: this.state.notes.length + 1 }, ...this.state.notes];
     }
-    this.setState({ notes: newNotes });
+    this.setState({ notes: newNotes, selectedNote: null });
   }
 
   openModal = () => {

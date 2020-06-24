@@ -46,8 +46,19 @@
   overflow-wrap: break-word;
 }
 
+.textarea__container {
+  padding: 3rem;
+  padding: 0 2rem;
+  padding-top: 3rem;
+}
+
 textarea {
+  background-color: transparent;
+  width: 100%;
   resize: none;
+  line-height: 1.5rem;
+  outline: none;
+  border: none;
 }
 
 .btn-add-note {
@@ -110,20 +121,46 @@ textarea {
 
 .modal {
   background-color: #fff;
-  width: 20vw;
+  width: 50%;
+}
+
+@media only screen and (max-width: 50em) {
+  .modal {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .modal {
+    width: 100%;
+  }
 }
 
 .modal__header {
   display: grid;
-  justify-content: end;
-  margin-bottom: 2rem;
-  padding: 1rem;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+}
+
+.header {
+  line-height: 2.5rem;
+  font-size: 1.6rem;
 }
 
 .modal__content {
   display: grid;
-  padding: 2rem;
   grid-gap: 2rem;
+}
+
+.check {
+  height: 1rem;
+  width: 1rem;
+  visibility: hidden;
+}
+
+.check--showIcon {
+  visibility: visible;
 }
 
 .colors {
@@ -131,15 +168,15 @@ textarea {
     grid-template-columns: repeat(5, max-content);
     grid-gap: 1rem;
     justify-content: end;
+    align-items: center;
 }
 
 .color {
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 50%;
-  border-width: 2px;
-  border-style: solid;
-  box-sizing: border-box;
-  border-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .color--orange {
@@ -162,23 +199,28 @@ textarea {
   background-color: var(--color-green);
 }
 
-.color--active {
-  border-color: blue;
-}
-
 .btn-modal {
   cursor: pointer;
-  background-color: var(--color-background);
-  padding: 1.5rem;
-  box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
   transition: all .2s;
   text-align: center;
+  box-shadow: 0px 0px 0px 1px #dadce0 inset;
+  border-radius: .5rem;
 }
 
 .btn-modal:hover {
-  transform: translateY(-.25rem);
+  background-color: var(--color-background);
 }
 
 .btn-modal:active {
-  transform: translateY(-.05rem);
+  background-color: var(--color-background);
+}
+
+.btns {
+  display: grid;
+  grid-template-columns: repeat(2, 5rem);
+  grid-column-gap: 2rem;
+  justify-content: end;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
 }
